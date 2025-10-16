@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Summary aXRlbSxzYWxlcwpBcHBsZXMsMTIwLjUwCkJhbmFuYXMsODUuNzUKT3JhbmdlcywxNTAuMjUKR3JhcGVzLDk5LjAwCk1hbmdvZXMsMTMwLjQwCg==</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Sales Summary</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Sales:</h5>
+                <p id="total-sales" class="card-text display-6">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Fetch the CSV data
+                const response = await fetch('data:text/csv;base64,aXRlbSxzYWxlcwpBcHBsZXMsMTIwLjUwCkJhbmFuYXMsODUuNzUKT3JhbmdlcywxNTAuMjUKR3JhcGVzLDk5LjAwCk1hbmdvZXMsMTMwLjQwCg==');
+                const csvText = await response.text();
+                
+                // Parse CSV (simple approach for this specific data)
+                const lines = csvText.trim().split('\n');
+                let total = 0;
+                
+                // Skip header and process each line
+                for (let i = 1; i < lines.length; i++) {
+                    const parts = lines[i].split(',');
+                    if (parts.length === 2) {
+                        const sales = parseFloat(parts[1]);
+                        if (!isNaN(sales)) {
+                            total += sales;
+                        }
+                    }
+                }
+                
+                // Display the result
+                document.getElementById('total-sales').textContent = total.toFixed(2);
+            } catch (error) {
+                console.error('Error processing sales data:', error);
+                document.getElementById('total-sales').textContent = 'Error';
+            }
+        });
+    </script>
+</body>
+</html>
