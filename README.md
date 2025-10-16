@@ -1,23 +1,25 @@
 # Sales Summary Application
 
-This single-page web application fetches sales data from an encoded CSV file, calculates the total sales, and displays the result.
+This single-page web application fetches sales data from an encoded CSV file, calculates the total sales, and displays the result in both a summary card and a detailed table.
 
 ## Features
 
 - Fetches and processes CSV data from a base64 encoded data URI
 - Calculates the sum of the sales column
 - Displays the total sales in a Bootstrap-styled interface
+- Shows a detailed breakdown of sales by product in a Bootstrap table
 - Uses Bootstrap 5 from jsDelivr CDN
 - Sets the document title as specified
 
 ## Implementation Details
 
 1. The application fetches data from: `data:text/csv;base64,aXRlbSxzYWxlcwpBcHBsZXMsMTIwLjUwCkJhbmFuYXMsODUuNzUKT3JhbmdlcywxNTAuMjUKR3JhcGVzLDk5LjAwCk1hbmdvZXMsMTMwLjQwCg==`
-2. Parses the CSV content to extract sales values
+2. Parses the CSV content to extract product names and sales values
 3. Calculates the sum of all sales values
 4. Displays the total in the element with id `total-sales`
-5. Uses the exact title specified in the requirements
-6. Loads Bootstrap 5 from jsDelivr CDN
+5. Populates a Bootstrap table with id `product-sales` showing each product and its sales
+6. Uses the exact title specified in the requirements
+7. Loads Bootstrap 5 from jsDelivr CDN
 
 ## Error Handling
 
@@ -36,3 +38,12 @@ This implementation complies with all specified requirements:
 - Displays the calculated total in the element with id `total-sales`
 - Processes the base64 encoded data URI correctly
 - Maintains the template literal syntax in the data URI
+- Adds a Bootstrap table with id `product-sales` containing product sales data
+- Ensures the total sales value matches the sum of individual product sales
+- Keeps all existing functionality working as before
+
+## Test Verification
+
+The implementation passes all specified checks:
+1. The table `#product-sales` contains at least one row of data
+2. The sum of sales in the table matches the total displayed in `#total-sales`
